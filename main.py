@@ -32,7 +32,7 @@ def get_algorithms() -> list[str]:
     ]
 
 
-def generate_array(size: int) -> list[int]:
+def generate_array(size: int, reverse: bool = False) -> list[int]:
     """Generate a randomized array with a provided size
 
     Args:
@@ -42,7 +42,10 @@ def generate_array(size: int) -> list[int]:
         list[int]: The generated array (with randomized order)
     """
     a = [i for i in range(1, size + 1)]
-    shuffle(a)
+    if reverse:
+        a.reverse()
+    else:
+        shuffle(a)
     return a
 
 
@@ -51,6 +54,7 @@ def main():
     # Initializing variables
     choice = None
     size = None
+    choice2 = None
     
     # Getting list of algorithms
     algorithms = get_algorithms()
@@ -76,8 +80,24 @@ def main():
             + "Input the size [2 ; 100] of the array to generate and sort: "
             + vc.CMDColors.YELLOW
         )
+        
+    print()
+    
+    # Printing available choices
+    print(vc.CMDColors.YELLOW, "0 : Randomized")
+    print(vc.CMDColors.YELLOW, "1 : Reversed")
+    
+    print()
+        
+    # Getting choice2
+    while choice2 not in [0, 1]:
+        choice2 = ask_for_int(
+            vc.CMDColors.RESET
+            + "Is array fully randomized or reversed? "
+            + vc.CMDColors.YELLOW
+        )
 
-    array = generate_array(size)
+    array = generate_array(size, reverse=bool(choice2))
     
     # Instructions
     print(
