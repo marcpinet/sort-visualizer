@@ -78,6 +78,25 @@ def main():
         )
 
     array = generate_array(size)
+    
+    # Instructions
+    print(
+        vc.CMDColors.CYAN
+        + "Press "
+        + vc.CMDColors.FAIL
+        + "SPACE"
+        + vc.CMDColors.CYAN
+        + " to start sorting.\nPress "
+        + vc.CMDColors.FAIL
+        + "SPACE"
+        + vc.CMDColors.CYAN
+        + " again to shuffle it.\nPress "
+        + vc.CMDColors.HEADER
+        + "CTRL+C"
+        + vc.CMDColors.CYAN
+        + " in the terminal to exit."
+        + vc.CMDColors.RESET
+    )
 
     animation = vw.Window(array, algorithms[choice])
     animation.start()
