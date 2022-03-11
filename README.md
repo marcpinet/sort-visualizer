@@ -19,6 +19,9 @@ When the Pygame window gets opened, press <kbd>SPACE</kbd> to start the algorith
 
 ## Demo
 
+https://user-images.githubusercontent.com/52708150/157813375-20c9e8cd-c910-41da-8018-50715b8ba662.mp4
+
+https://user-images.githubusercontent.com/52708150/157813376-65800ad4-627b-4b02-8fcb-d5e2b7688058.mp4
 
 ## Support 👨‍💻
 
