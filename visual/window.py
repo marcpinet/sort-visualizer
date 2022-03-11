@@ -9,7 +9,11 @@ import algorithms.insertion_sort as insertion_sort
 import algorithms.merge_sort as merge_sort
 import algorithms.heap_sort as heap_sort
 import algorithms.quick_sort as quick_sort
-
+import algorithms.radix_sort as radix_sort
+import algorithms.counting_sort as counting_sort
+import algorithms.cocktail_shaker_sort as cocktail_shaker_sort
+import algorithms.gravity_bead_sort as gravity_bead_sort
+import algorithms.bogo_sort as bogo_sort
 
 class Window:
     WIDTH = 800
@@ -160,6 +164,7 @@ class Window:
                                         self.array = [s for s in step if s != -1]
                                     else:
                                         continue
+                                    
                                     total_time = time
 
                                     # In a case where the yielded array is not the same length as the original array (e.g Merge Sort)
@@ -202,5 +207,15 @@ class ArrayTool:
             steps = quick_sort.sort(array)
         elif algorithm == "Heap Sort":
             steps = heap_sort.sort(array)
+        elif algorithm == "Radix Sort":
+            steps = radix_sort.sort(array)
+        elif algorithm == "Counting Sort":
+            steps = counting_sort.sort(array)
+        elif algorithm == "Cocktail Shaker Sort":
+            steps = cocktail_shaker_sort.sort(array)
+        elif algorithm == "Gravity Bead Sort":
+            steps = gravity_bead_sort.sort(array)
+        elif algorithm == "Bogo Sort":
+            steps = bogo_sort.sort(array)
 
         return steps
