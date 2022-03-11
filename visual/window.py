@@ -1,21 +1,8 @@
 import pygame
 from random import shuffle
 
-# Massive imports
 import visual.colors as vc
-import algorithms.bubble_sort as bubble_sort
-import algorithms.selection_sort as selection_sort
-import algorithms.insertion_sort as insertion_sort
-import algorithms.merge_sort as merge_sort
-import algorithms.heap_sort as heap_sort
-import algorithms.quick_sort as quick_sort
-import algorithms.radix_sort as radix_sort
-import algorithms.counting_sort as counting_sort
-import algorithms.cocktail_shaker_sort as cocktail_shaker_sort
-import algorithms.gravity_bead_sort as gravity_bead_sort
-import algorithms.bogo_sort as bogo_sort
-import algorithms.shell_sort as shell_sort
-import algorithms.binary_tree_sort as binary_tree_sort
+import importlib
 
 class Window:
     WIDTH = 800
@@ -196,32 +183,9 @@ class ArrayTool:
     @staticmethod
     def sort(algorithm: str, array: list[int]):
         steps = None
-
-        if algorithm == "Bubble Sort":
-            steps = bubble_sort.sort(array)
-        elif algorithm == "Selection Sort":
-            steps = selection_sort.sort(array)
-        elif algorithm == "Insertion Sort":
-            steps = insertion_sort.sort(array)
-        elif algorithm == "Merge Sort":
-            steps = merge_sort.sort(array)
-        elif algorithm == "Quick Sort":
-            steps = quick_sort.sort(array)
-        elif algorithm == "Heap Sort":
-            steps = heap_sort.sort(array)
-        elif algorithm == "Radix Sort":
-            steps = radix_sort.sort(array)
-        elif algorithm == "Counting Sort":
-            steps = counting_sort.sort(array)
-        elif algorithm == "Cocktail Shaker Sort":
-            steps = cocktail_shaker_sort.sort(array)
-        elif algorithm == "Gravity Bead Sort":
-            steps = gravity_bead_sort.sort(array)
-        elif algorithm == "Bogo Sort":
-            steps = bogo_sort.sort(array)
-        elif algorithm == "Shell Sort":
-            steps = shell_sort.sort(array)
-        elif algorithm == "Binary Tree Sort":
-            steps = binary_tree_sort.sort(array)
-
+        
+        alg = algorithm.replace(" ", "_").lower()
+        module = importlib.import_module(f"algorithms.{alg}")
+        steps = module.sort(array)
+        
         return steps
