@@ -1,6 +1,4 @@
 import time
-from itertools import chain
-
 
 def sort(array: list[int]):
     """Quick Sort"""
