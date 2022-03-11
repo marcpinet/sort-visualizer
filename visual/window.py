@@ -14,6 +14,7 @@ import algorithms.counting_sort as counting_sort
 import algorithms.cocktail_shaker_sort as cocktail_shaker_sort
 import algorithms.gravity_bead_sort as gravity_bead_sort
 import algorithms.bogo_sort as bogo_sort
+import algorithms.shell_sort as shell_sort
 
 class Window:
     WIDTH = 800
@@ -217,5 +218,7 @@ class ArrayTool:
             steps = gravity_bead_sort.sort(array)
         elif algorithm == "Bogo Sort":
             steps = bogo_sort.sort(array)
+        elif algorithm == "Shell Sort":
+            steps = shell_sort.sort(array)
 
         return steps
