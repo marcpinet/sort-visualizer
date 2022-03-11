@@ -3,10 +3,12 @@ from random import shuffle
 
 import visual.colors as vc
 import importlib
+import keyboard
+
 
 class Window:
-    WIDTH = 800
-    HEIGHT = 600
+    WIDTH = 0
+    HEIGHT = 0
     FPS = 1
 
     def __init__(self, array: list[int], algorithm: str):
@@ -21,9 +23,9 @@ class Window:
         self.sorted = False
 
         pygame.init()
-        self.screen = Window.SCREEN = pygame.display.set_mode(
-            (Window.WIDTH, Window.HEIGHT)
-        )
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        Window.WIDTH, Window.HEIGHT = self.screen.get_size()
+
         self.screen.fill(vc.Color.BLACK)
         pygame.display.set_caption("Sorting Visualizer : " + algorithm)
 
@@ -51,7 +53,7 @@ class Window:
                     vc.Color.RED,
                     (
                         x_coord,
-                        Window.HEIGHT - 100 - k * rod_height,
+                        Window.HEIGHT - k * rod_height,
                         rod_width,
                         k * rod_height,
                     ),
@@ -62,7 +64,7 @@ class Window:
                     vc.Color.WHITE,
                     (
                         x_coord,
-                        Window.HEIGHT - 100 - k * rod_height,
+                        Window.HEIGHT - k * rod_height,
                         rod_width,
                         k * rod_height,
                     ),
@@ -85,7 +87,7 @@ class Window:
                     vc.Color.GREEN,
                     (
                         x_coord,
-                        Window.HEIGHT - 100 - k * rod_height,
+                        Window.HEIGHT - k * rod_height,
                         rod_width,
                         k * rod_height,
                     ),
@@ -96,7 +98,7 @@ class Window:
                     vc.Color.WHITE,
                     (
                         x_coord,
-                        Window.HEIGHT - 100 - k * rod_height,
+                        Window.HEIGHT - k * rod_height,
                         rod_width,
                         k * rod_height,
                     ),
@@ -120,6 +122,16 @@ class Window:
             + vc.CMDColors.RESET
         )
 
+    def handle_quit_keyboard(self) -> None:
+        """Must be put in a loop !!!!"""
+        try:
+            if keyboard.is_pressed("esc"):
+                self.running = False
+                pygame.quit()
+                quit()
+        except:
+            pass
+
     def start(self):
         if self.running:
             raise RuntimeError("Window is already running")
@@ -135,57 +147,59 @@ class Window:
                     if event.type == pygame.QUIT:
                         self.running = False
 
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_SPACE:
-                            if not self.sorted:
-                                print("\nSorting...")
+                try:
+                    if keyboard.is_pressed("space"):
+                        if not self.sorted:
+                            print("\nSorting...")
 
-                                # Sort the array
-                                total_time = 0
-                                for step, important_rods, time in ArrayTool.sort(
-                                    self.algorithm, self.array
+                            # Sort the array
+                            total_time = 0
+                            for step, important_rods, time in ArrayTool.sort(
+                                self.algorithm, self.array
+                            ):
+                                if (
+                                    step is not None
+                                    and len(step) > 0
+                                    and not (len(step) == 1 and step[0] != -1)
                                 ):
-                                    if (
-                                        step is not None
-                                        and len(step) > 0
-                                        and not (len(step) == 1 and step[0] != -1)
-                                    ):
-                                        self.array = [s for s in step if s != -1]
-                                    else:
-                                        continue
-                                    
-                                    total_time = time
+                                    self.array = [s for s in step if s != -1]
+                                else:
+                                    continue
 
-                                    # In a case where the yielded array is not the same length as the original array (e.g Merge Sort)
+                                total_time = time
 
-                                    # Refreshing EVERYTHING
-                                    self._draw_rods(important_rods)
-                                    self._refresh_all()
+                                # In a case where the yielded array is not the same length as the original array (e.g Merge Sort)
 
-                                self.sorted_animation()
-                                print(
-                                    vc.CMDColors.GREEN + "Sorted!" + vc.CMDColors.RESET
-                                )
-                                self.sorted = True
-                                self.show_total_time(total_time)
+                                # Refreshing EVERYTHING
+                                self._draw_rods(important_rods)
+                                self._refresh_all()
+                                self.handle_quit_keyboard()
 
-                            # Resetting the array
-                            elif self.sorted:
-                                shuffle(self.array)
-                                self.sorted = False
+                            self.sorted_animation()
+                            print(vc.CMDColors.GREEN + "Sorted!" + vc.CMDColors.RESET)
+                            self.sorted = True
+                            self.show_total_time(total_time)
+
+                        # Resetting the array
+                        elif self.sorted:
+                            shuffle(self.array)
+                            self.sorted = False
+                except:
+                    pass
 
                 # Refreshing EVERYTHING
                 self._draw_rods()
                 self._refresh_all()
+                self.handle_quit_keyboard()
 
 
 class ArrayTool:
     @staticmethod
     def sort(algorithm: str, array: list[int]):
         steps = None
-        
+
         alg = algorithm.replace(" ", "_").lower()
         module = importlib.import_module(f"algorithms.{alg}")
         steps = module.sort(array)
-        
+
         return steps

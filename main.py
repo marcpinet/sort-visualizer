@@ -55,7 +55,7 @@ def main():
     choice = None
     size = None
     choice2 = None
-    
+
     # Getting list of algorithms
     algorithms = get_algorithms()
 
@@ -74,21 +74,21 @@ def main():
         )
 
     # Getting the size of the array to generate and sort
-    while size not in range(2, 101):
+    while size not in range(2, 301):
         size = ask_for_int(
             vc.CMDColors.RESET
-            + "Input the size [2 ; 100] of the array to generate and sort: "
+            + "Input the size [2 ; 300] of the array to generate and sort: "
             + vc.CMDColors.YELLOW
         )
-        
+
     print()
-    
+
     # Printing available choices
     print(vc.CMDColors.YELLOW, "0 : Randomized")
     print(vc.CMDColors.YELLOW, "1 : Reversed")
-    
+
     print()
-        
+
     # Getting choice2
     while choice2 not in [0, 1]:
         choice2 = ask_for_int(
@@ -98,7 +98,7 @@ def main():
         )
 
     array = generate_array(size, reverse=bool(choice2))
-    
+
     # Instructions
     print(
         vc.CMDColors.CYAN
@@ -112,7 +112,7 @@ def main():
         + vc.CMDColors.CYAN
         + " again to shuffle it.\nPress "
         + vc.CMDColors.HEADER
-        + "CTRL+C"
+        + "ESCAPE"
         + vc.CMDColors.CYAN
         + " in the terminal to exit."
         + vc.CMDColors.RESET
@@ -120,6 +120,9 @@ def main():
 
     animation = vw.Window(array, algorithms[choice])
     animation.start()
+
+    _ = input("\nPress ENTER to exit.\n")
+
 
 if __name__ == "__main__":
     main()
