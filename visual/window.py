@@ -1,10 +1,14 @@
 import pygame
+from random import shuffle
 
+# Massive imports
 import visual.colors as vc
 import algorithms.bubble_sort as bubble_sort
 import algorithms.selection_sort as selection_sort
 import algorithms.insertion_sort as insertion_sort
 import algorithms.merge_sort as merge_sort
+import algorithms.heap_sort as heap_sort
+import algorithms.quick_sort as quick_sort
 
 
 class Window:
@@ -145,14 +149,21 @@ class Window:
 
                                 # Sort the array
                                 total_time = 0
-                                for step, important_rods, time in ArrayTool.sort(self.algorithm, self.array):
-
-                                    self.array = step
+                                for step, important_rods, time in ArrayTool.sort(
+                                    self.algorithm, self.array
+                                ):
+                                    if (
+                                        step is not None
+                                        and len(step) > 0
+                                        and not (len(step) == 1 and step[0] != -1)
+                                    ):
+                                        self.array = [s for s in step if s != -1]
+                                    else:
+                                        continue
                                     total_time = time
-                                    
+
                                     # In a case where the yielded array is not the same length as the original array (e.g Merge Sort)
-                                    
-                                    
+
                                     # Refreshing EVERYTHING
                                     self._draw_rods(important_rods)
                                     self._refresh_all()
@@ -163,6 +174,11 @@ class Window:
                                 )
                                 self.sorted = True
                                 self.show_total_time(total_time)
+
+                            # Resetting the array
+                            elif self.sorted:
+                                shuffle(self.array)
+                                self.sorted = False
 
                 # Refreshing EVERYTHING
                 self._draw_rods()
@@ -182,5 +198,9 @@ class ArrayTool:
             steps = insertion_sort.sort(array)
         elif algorithm == "Merge Sort":
             steps = merge_sort.sort(array)
+        elif algorithm == "Quick Sort":
+            steps = quick_sort.sort(array)
+        elif algorithm == "Heap Sort":
+            steps = heap_sort.sort(array)
 
         return steps
