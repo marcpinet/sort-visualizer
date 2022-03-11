@@ -15,6 +15,7 @@ import algorithms.cocktail_shaker_sort as cocktail_shaker_sort
 import algorithms.gravity_bead_sort as gravity_bead_sort
 import algorithms.bogo_sort as bogo_sort
 import algorithms.shell_sort as shell_sort
+import algorithms.binary_tree_sort as binary_tree_sort
 
 class Window:
     WIDTH = 800
@@ -220,5 +221,7 @@ class ArrayTool:
             steps = bogo_sort.sort(array)
         elif algorithm == "Shell Sort":
             steps = shell_sort.sort(array)
+        elif algorithm == "Binary Tree Sort":
+            steps = binary_tree_sort.sort(array)
 
         return steps
