@@ -18,8 +18,8 @@ def sort(array: list[int]):
             for i in range(left, right):
                 if array[i] <= pivot:
                     array[i], array[pivot_index] = array[pivot_index], array[i]
-                    yield array, [array[i], array[pivot_index]], time.time() - start_time
                     pivot_index += 1
+                yield array, [array[i], array[pivot_index - 1]], time.time() - start_time
 
             array[pivot_index], array[right] = array[right], array[pivot_index]
             yield array, [array[pivot_index], array[right]], time.time() - start_time

@@ -18,7 +18,7 @@ def sort(array: list[int]):
             array[i], array[largest] = array[largest], array[i]
             yield from heapify(array, n, largest)
         
-        yield array, [largest], time.time() - start_time
+        yield array, [largest, i], time.time() - start_time
 
     n = len(array)
     for i in range(n, -1, -1):

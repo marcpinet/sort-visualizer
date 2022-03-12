@@ -21,14 +21,14 @@ def sort(array: list[int]):
             buckets[tmp % RADIX].append(i)
             if maxLength and tmp > 0:
                 maxLength = False
-                yield array, [i], time.time() - start_time
+            yield array, [i], time.time() - start_time
         
         # empty lists into input array
         a = 0
         for bucket in buckets:
             for i in bucket:
                 array[a] = i
-                yield array, [array[a], i], time.time() - start_time  # Before the a += 1 because of IndexError
+                yield array, [i], time.time() - start_time  # Before the a += 1 because of IndexError
                 a += 1
             bucket.clear()
         
