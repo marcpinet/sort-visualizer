@@ -26,7 +26,7 @@ def sort(array: list[int]):
         prev = sum([1 for x in inter if len(x) > ind])
         tmp = [x for x in out]
         tmp.extend([x for x in array if x not in tmp])
-        yield tmp[::-1], out, time.time() - start_time
+        yield tmp[::-1], [prev], time.time() - start_time
         
     out = out[::-1]
 
