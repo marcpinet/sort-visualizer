@@ -84,7 +84,7 @@ def main():
     while size not in range(2, 901):
         size = ask_for_int(
             vc.CMDColors.RESET
-            + "Input the size [2 ; 700] of the array to generate and sort: "
+            + "Input the size [2 ; 900] of the array to generate and sort: "
             + vc.CMDColors.YELLOW
         )
 
