@@ -21,7 +21,6 @@ def sort(array: list[int]):
                     node.parent = self
                     yield array, [node.key], time.time() - start_time
                 else:
-                    yield array, [node.key], time.time() - start_time
                     yield from self.left.insert_elem(node)
             elif self.key <= node.key:
                 if self.right is None:
@@ -29,7 +28,6 @@ def sort(array: list[int]):
                     node.parent = self
                     yield array, [node.key], time.time() - start_time
                 else:
-                    yield array, [node.key], time.time() - start_time
                     yield from self.right.insert_elem(node)
 
         def inorder_traversal(self):
