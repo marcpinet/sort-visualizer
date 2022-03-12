@@ -1,4 +1,5 @@
 import pygame
+import time
 from random import shuffle
 
 import visual.colors as vc
@@ -19,6 +20,9 @@ class Window:
 
         self.clock = pygame.time.Clock()
         self.running = False
+        
+        self.start_time = 0
+        self.elapsed_time = 0
 
         self.array = array
         self.algorithm = algorithm
@@ -40,6 +44,7 @@ class Window:
         pygame.display.flip()
         self._refresh_background()
         self.show_speed()
+        self.show_elapsed_time()
         self.clock.tick(Window.FPS)
 
     def _draw_rods(self, important_rods: list[int] = []) -> None:
@@ -126,23 +131,22 @@ class Window:
             self._refresh_all()
             self.handle_quit_keyboard()
             self.handle_speed_keys()
-
-    def show_total_time(self, total_time: int) -> None:
-        print(
-            vc.CMDColors.BLUE
-            + "Total time: "
-            + str(total_time)
-            + "ms"
-            + vc.CMDColors.RESET
-        )
         
     def show_speed(self) -> None:
         """Show the speed of the animation (Window.FPS) but adapted to 1x at the top left corner"""
         font = pygame.font.SysFont("Arial", 30)
-        text = font.render("Speed: x" + str(round(Window.FPS / self.default_fps, 3)), True, vc.Color.WHITE)
+        text = font.render("Speed: x" + str(round(Window.FPS / self.default_fps, 3)), True, vc.Color.YELLOW)
         text_rect = text.get_rect()
         text_rect.left = 10
         text_rect.top = 10
+        self.screen.blit(text, text_rect)
+        
+    def show_elapsed_time(self) -> None:
+        font = pygame.font.SysFont("Arial", 30)
+        text = font.render("Elapsed Time: " + str(round(self.elapsed_time, 3)) + " sec", True, vc.Color.YELLOW)
+        text_rect = text.get_rect()
+        text_rect.left = 10
+        text_rect.top = 50
         self.screen.blit(text, text_rect)
 
     def handle_speed_keys(self) -> None:
@@ -195,8 +199,9 @@ class Window:
                             print("\nSorting...")
 
                             # Sort the array
-                            total_time = 0
-                            for step, important_rods, time in ArrayTool.sort(
+                            self.start_time = time.time()
+                            self.elapsed_time = 0
+                            for step, important_rods in ArrayTool.sort(
                                 self.algorithm, self.array
                             ):
                                 if (
@@ -204,11 +209,11 @@ class Window:
                                     and len(step) > 0
                                     and not (len(step) == 1 and step[0] != -1)
                                 ):
-                                    self.array = [s for s in step if s != -1]
+                                    self.array = [s for s in step if s != -1]  # Updating self.array to the current step
                                 else:
                                     continue
 
-                                total_time = time
+                                self.elapsed_time = time.time() - self.start_time
 
                                 # In a case where the yielded array is not the same length as the original array (e.g Merge Sort)
 
@@ -221,7 +226,6 @@ class Window:
                             self.sorted_animation()
                             print(vc.CMDColors.GREEN + "Sorted!" + vc.CMDColors.RESET)
                             self.sorted = True
-                            self.show_total_time(total_time)
 
                         # Resetting the array
                         elif self.sorted:

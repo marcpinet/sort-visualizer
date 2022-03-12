@@ -1,10 +1,8 @@
-import time
 from random import shuffle
 
 
 def sort(array: list[int]):
     """Bogo Sort"""
-    start_time = time.time()
 
     def _is_sorted(a):
         n = len(a)
@@ -24,4 +22,4 @@ def sort(array: list[int]):
     while not _is_sorted(array):
         tmp = array.copy()
         shuffle(array)
-        yield array, _get_diff(array, tmp), time.time() - start_time
+        yield array, _get_diff(array, tmp)

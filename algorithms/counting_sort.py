@@ -1,9 +1,5 @@
-import time
-
 def sort(array, digit=-1):
     """Counting Sort"""
-    start_time = time.time()
-
     # Initialize the counting array
     counting_array = [0] * (max(array) + 1)
 
@@ -22,13 +18,11 @@ def sort(array, digit=-1):
     for i in range(len(array)):
         output_array[counting_array[array[i]] - 1] = array[i]
         counting_array[array[i]] -= 1
-        yield array, [array[i]], time.time() - start_time
+        yield array, [array[i]]
 
     # Copy the elements from the output array to the input array
     for i in range(len(array)):
         array[i] = output_array[i]
-        yield array, [i], time.time() - start_time
+        yield array, [i]
 
-    end_time = time.time()
-    total_time = end_time - start_time
-    yield array, [-1], total_time
+    yield array, [-1]

@@ -1,9 +1,5 @@
-import time
-
-
 def sort(array: list[int]):
     """Cocktail Shaker Sort"""
-    start_time = time.time()
 
     n = len(array)
     swapped = True
@@ -13,7 +9,7 @@ def sort(array: list[int]):
             if array[i] > array[i + 1]:
                 array[i], array[i + 1] = array[i + 1], array[i]
                 swapped = True
-                yield array, [array[i], array[i + 1]], time.time() - start_time
+                yield array, [array[i], array[i + 1]]
             
         if not swapped:
             break
@@ -22,8 +18,6 @@ def sort(array: list[int]):
             if array[i] < array[i - 1]:
                 array[i], array[i - 1] = array[i - 1], array[i]
                 swapped = True
-                yield array, [array[i], array[i - 1]], time.time() - start_time
+                yield array, [array[i], array[i - 1]]
             
-    end_time = time.time()
-    total_time = end_time - start_time
-    yield array, [-1], total_time
+    yield array, [-1]

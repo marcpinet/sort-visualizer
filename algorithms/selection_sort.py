@@ -1,8 +1,5 @@
-import time
-
 def sort(array: list[int]):
     """Selection Sort"""
-    start_time = time.time()
     
     for i in range(len(array)):
         min_idx = i
@@ -10,6 +7,6 @@ def sort(array: list[int]):
             if array[min_idx] > array[j]:
                 min_idx = j
         
-            yield array, [array[i], array[j]], time.time() - start_time
+            yield array, [array[i], array[j]]
             
         array[i], array[min_idx] = array[min_idx], array[i]

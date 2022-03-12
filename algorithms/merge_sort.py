@@ -1,8 +1,4 @@
-import time
-
-
 def sort(array: list[int]):
-    start_time = time.time()
 
     def merge_sort(start, end):
 
@@ -32,18 +28,18 @@ def sort(array: list[int]):
                     array[c] = right[b]
                     b += 1
                 c += 1
-                yield array, important_values, time.time() - start_time
+                yield array, important_values
 
             while a < len(left):
                 array[c] = left[a]
                 a += 1
                 c += 1
-                yield array, important_values, time.time() - start_time
+                yield array, important_values
 
             while b < len(right):
                 array[c] = right[b]
                 b += 1
                 c += 1
-                yield array, important_values, time.time() - start_time
+                yield array, important_values
 
     yield from merge_sort(0, len(array))  # call inner function with start/end arguments

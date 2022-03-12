@@ -1,9 +1,5 @@
-import time
-
-
 def sort(array: list[int]):
     """Radix Sort"""
-    start_time = time.time()
 
     RADIX = 10
     #buckets = tuple([] for i in range(RADIX))
@@ -21,18 +17,18 @@ def sort(array: list[int]):
             buckets[tmp % RADIX].append(i)
             if maxLength and tmp > 0:
                 maxLength = False
-            yield array, [i], time.time() - start_time
+            yield array, [i]
         
         # empty lists into input array
         a = 0
         for bucket in buckets:
             for i in bucket:
                 array[a] = i
-                yield array, [i], time.time() - start_time  # Before the a += 1 because of IndexError
+                yield array, [i]  # Before the a += 1 because of IndexError
                 a += 1
             bucket.clear()
         
         # move to next digit
         placement *= RADIX
         
-        yield array, [-1], time.time() - start_time
+        yield array, [-1]

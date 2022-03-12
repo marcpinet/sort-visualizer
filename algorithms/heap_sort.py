@@ -1,9 +1,5 @@
-import time
-
-
 def sort(array: list[int]):
     """Heap Sort"""
-    start_time = time.time()
 
     def heapify(array, n, i):
         largest = i
@@ -18,7 +14,7 @@ def sort(array: list[int]):
             array[i], array[largest] = array[largest], array[i]
             yield from heapify(array, n, largest)
         
-        yield array, [largest, i], time.time() - start_time
+        yield array, [largest, i]
 
     n = len(array)
     for i in range(n, -1, -1):

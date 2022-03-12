@@ -1,9 +1,5 @@
-import time
-
-
 def sort(array: list[int]):
     """Gravity/Bead Sort"""
-    start_time = time.time()
 
     ref = [range(x) for x in array]  # for reference
 
@@ -14,7 +10,7 @@ def sort(array: list[int]):
         inter.append(range(prev))
         ind += 1
         prev = sum([1 for x in ref if len(x) > ind])
-        yield array, [ind - 1], time.time() - start_time
+        yield array, [ind - 1]
 
     ind = 0
     prev = sum([1 for x in inter if len(x) > ind])
@@ -26,8 +22,8 @@ def sort(array: list[int]):
         prev = sum([1 for x in inter if len(x) > ind])
         tmp = [x for x in out]
         tmp.extend([x for x in array if x not in tmp])
-        yield tmp[::-1], [prev], time.time() - start_time
+        yield tmp[::-1], [prev]
         
     out = out[::-1]
 
-    yield out, [-1], time.time() - start_time
+    yield out, [-1]
