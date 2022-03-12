@@ -115,6 +115,14 @@ def main():
         + "SPACE"
         + vc.CMDColors.CYAN
         + " to start sorting.\nPress "
+        + vc.CMDColors.WARNING
+        + "LEFT_ARROW"
+        + vc.CMDColors.CYAN
+        + " or "
+        + vc.CMDColors.WARNING
+        + "RIGHT_ARROW"
+        + vc.CMDColors.CYAN
+        + " to adjust the speed.\nPress "
         + vc.CMDColors.FAIL
         + "SPACE"
         + vc.CMDColors.CYAN

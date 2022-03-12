@@ -15,6 +15,7 @@ class Window:
     def __init__(self, array: list[int], algorithm: str):
 
         Window.FPS *= round(math.log2(len(array))) ** 2
+        self.default_fps = Window.FPS
 
         self.clock = pygame.time.Clock()
         self.running = False
@@ -38,6 +39,7 @@ class Window:
         pygame.display.update()
         pygame.display.flip()
         self._refresh_background()
+        self.show_speed()
         self.clock.tick(Window.FPS)
 
     def _draw_rods(self, important_rods: list[int] = []) -> None:
@@ -110,6 +112,7 @@ class Window:
             self._draw_some_rods(tmp, do_others=True)
             self._refresh_all()
             self.handle_quit_keyboard()
+            self.handle_speed_keys()
 
     def show_total_time(self, total_time: int) -> None:
         print(
@@ -119,6 +122,34 @@ class Window:
             + "ms"
             + vc.CMDColors.RESET
         )
+        
+    def show_speed(self) -> None:
+        """Show the speed of the animation (Window.FPS) but adapted to 1x at the top left corner"""
+        font = pygame.font.SysFont("Arial", 30)
+        text = font.render("Speed: x" + str(round(Window.FPS / self.default_fps, 3)), True, vc.Color.WHITE)
+        text_rect = text.get_rect()
+        text_rect.left = 10
+        text_rect.top = 10
+        self.screen.blit(text, text_rect)
+
+    def handle_speed_keys(self) -> None:
+        """Must be in a loop"""
+        dec = 0
+        try:
+            if keyboard.is_pressed("right"):
+                if dec == 0:
+                    Window.FPS += 1
+                    dec += 1
+                else:
+                    dec += 1
+            if keyboard.is_pressed("left"):
+                if dec == 0:
+                    Window.FPS -= 1
+                    dec += 1
+                else:
+                    dec += 1
+        except:
+            pass
 
     def handle_quit_keyboard(self) -> None:
         """Must be put in a loop !!!!"""
@@ -172,6 +203,7 @@ class Window:
                                 self._draw_rods(important_rods)
                                 self._refresh_all()
                                 self.handle_quit_keyboard()
+                                self.handle_speed_keys()
 
                             self.sorted_animation()
                             print(vc.CMDColors.GREEN + "Sorted!" + vc.CMDColors.RESET)
@@ -189,6 +221,7 @@ class Window:
                 self._draw_rods()
                 self._refresh_all()
                 self.handle_quit_keyboard()
+                self.handle_speed_keys()
 
 
 class ArrayTool:
