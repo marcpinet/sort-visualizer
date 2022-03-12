@@ -1,6 +1,6 @@
 import glob
 
-from random import shuffle
+from random import shuffle, randint
 
 import visual.colors as vc
 import visual.window as vw
@@ -32,7 +32,9 @@ def get_algorithms() -> list[str]:
     ]
 
 
-def generate_array(size: int, reverse: bool = False) -> list[int]:
+def generate_array(
+    size: int, reverse: bool = False, few_unique: bool = False
+) -> list[int]:
     """Generate a randomized array with a provided size
 
     Args:
@@ -42,10 +44,15 @@ def generate_array(size: int, reverse: bool = False) -> list[int]:
         list[int]: The generated array (with randomized order)
     """
     a = [i for i in range(1, size + 1)]
+    
     if reverse:
         a.reverse()
+    elif few_unique:
+        a = [randint(1, size) for _ in range(1, size + 1)]
+        shuffle(a)
     else:
         shuffle(a)
+        
     return a
 
 
@@ -86,18 +93,19 @@ def main():
     # Printing available choices
     print(vc.CMDColors.YELLOW, "0 : Randomized")
     print(vc.CMDColors.YELLOW, "1 : Reversed")
+    print(vc.CMDColors.YELLOW, "2 : Few Unique")
 
     print()
 
     # Getting choice2
-    while choice2 not in [0, 1]:
+    while choice2 not in [0, 1, 2]:
         choice2 = ask_for_int(
             vc.CMDColors.RESET
             + "Is array fully randomized or reversed? "
             + vc.CMDColors.YELLOW
         )
 
-    array = generate_array(size, reverse=bool(choice2))
+    array = generate_array(size, reverse=True if choice2 == 1 else False, few_unique=True if choice2 == 2 else False)
 
     # Instructions
     print(
