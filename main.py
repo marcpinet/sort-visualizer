@@ -105,6 +105,8 @@ def main():
             + vc.CMDColors.YELLOW
         )
 
+    print()
+    
     array = generate_array(size, reverse=True if choice2 == 1 else False, few_unique=True if choice2 == 2 else False)
 
     # Instructions
@@ -115,11 +117,11 @@ def main():
         + "SPACE"
         + vc.CMDColors.CYAN
         + " to start sorting.\nPress "
-        + vc.CMDColors.WARNING
+        + vc.CMDColors.FAIL
         + "LEFT_ARROW"
         + vc.CMDColors.CYAN
         + " or "
-        + vc.CMDColors.WARNING
+        + vc.CMDColors.FAIL
         + "RIGHT_ARROW"
         + vc.CMDColors.CYAN
         + " to adjust the speed.\nPress "
@@ -127,7 +129,7 @@ def main():
         + "SPACE"
         + vc.CMDColors.CYAN
         + " again to shuffle it.\nPress "
-        + vc.CMDColors.HEADER
+        + vc.CMDColors.FAIL
         + "ESCAPE"
         + vc.CMDColors.CYAN
         + " in the terminal to exit."
