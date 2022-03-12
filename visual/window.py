@@ -4,6 +4,7 @@ from random import shuffle
 import visual.colors as vc
 import importlib
 import keyboard
+import math
 
 
 class Window:
@@ -13,7 +14,7 @@ class Window:
 
     def __init__(self, array: list[int], algorithm: str):
 
-        Window.FPS *= len(array)
+        Window.FPS *= round(math.log2(len(array))) ** 2
 
         self.clock = pygame.time.Clock()
         self.running = False
@@ -40,12 +41,10 @@ class Window:
         self.clock.tick(Window.FPS)
 
     def _draw_rods(self, important_rods: list[int] = []) -> None:
-        rod_width = (Window.WIDTH - 100) / len(self.array)
+        rod_width = (Window.WIDTH - 100 - len(self.array)) / len(self.array)
         rod_height = (Window.HEIGHT - 100) / max(self.array) - 1
 
-        center_x_start = Window.WIDTH / 2 - (len(self.array) * (rod_width + 1)) / 2
-
-        x_coord = center_x_start
+        x_coord = Window.WIDTH / 2 - (len(self.array) * (rod_width + 1)) / 2
         for k in self.array:
             if k in important_rods:
                 pygame.draw.rect(
@@ -74,12 +73,10 @@ class Window:
     def _draw_some_rods(
         self, array: list[int], important_rods: list[int] = [], do_others: bool = False
     ) -> None:
-        rod_width = (Window.WIDTH - 100) / len(self.array)
+        rod_width = (Window.WIDTH - 100 - len(self.array)) / len(self.array)
         rod_height = (Window.HEIGHT - 100) / max(self.array) - 1
 
-        center_x_start = Window.WIDTH / 2 - (len(self.array) * (rod_width + 1)) / 2
-
-        x_coord = center_x_start
+        x_coord = Window.WIDTH / 2 - (len(self.array) * (rod_width + 1)) / 2
         for k in self.array:
             if k in array:
                 pygame.draw.rect(
@@ -112,6 +109,7 @@ class Window:
             tmp.append(k)
             self._draw_some_rods(tmp, do_others=True)
             self._refresh_all()
+            self.handle_quit_keyboard()
 
     def show_total_time(self, total_time: int) -> None:
         print(
