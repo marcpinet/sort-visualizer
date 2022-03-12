@@ -4,7 +4,7 @@
 
 A simple graphical sorter written in Python with Pygame where you can visualize many algorithms and see how they actually work.
 
-You can adjust the speed using <kbd>→</kbd> or <kbd>←</kbd> and shuffle the array at the end of the sorting to restart the algorithm by pressing <kbd>SPACE</kbd>.
+You can adjust the speed using <kbd>→</kbd> or <kbd>←</kbd> and shuffle the array at the end of the sorting to restart the algorithm by pressing <kbd>SPACE</kbd>. Finally, press <kbd>ESC</kbd> to exit.
 
 I will add more algorithms when I have time.
 
