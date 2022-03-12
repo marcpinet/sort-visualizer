@@ -41,7 +41,7 @@ I am a [Brave Verified Creator](https://i.imgur.com/fOUfdM5.png)!
 Get a copy of the Project. Assuming you have git installed, open your Terminal and enter:
 
 ```bash
-git clone 'https://github.com/marcpinet/epidemic-modeling.git'
+git clone 'https://github.com/marcpinet/sorting-visualizer.git'
 ```
 
 To install all needed requirements run the following command in the project directory:
