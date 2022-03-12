@@ -77,13 +77,26 @@ class Window:
     ) -> None:
         rod_width = (Window.WIDTH - 100 - len(self.array)) / len(self.array)
         rod_height = (Window.HEIGHT - 100) / max(self.array) - 1
+        
+        last_element = array[-1]
 
         x_coord = Window.WIDTH / 2 - (len(self.array) * (rod_width + 1)) / 2
         for k in self.array:
-            if k in array:
+            if k in array and k != last_element:
                 pygame.draw.rect(
                     self.screen,
                     vc.Color.GREEN,
+                    (
+                        x_coord,
+                        Window.HEIGHT - k * rod_height,
+                        rod_width,
+                        k * rod_height,
+                    ),
+                )
+            elif k == last_element:
+                pygame.draw.rect(
+                    self.screen,
+                    vc.Color.RED,
                     (
                         x_coord,
                         Window.HEIGHT - k * rod_height,
