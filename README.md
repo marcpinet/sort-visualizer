@@ -25,7 +25,7 @@ When the Pygame window gets opened, press <kbd>SPACE</kbd> to start the algorith
 
 https://user-images.githubusercontent.com/52708150/158029271-9ed3b190-e5f0-4536-9ea8-b9b9b9609776.mp4
 
-### Merge Sort - Reversed
+### Merge Sort - Reversed - Playing with the speed (as you can see on top left corner)
 https://user-images.githubusercontent.com/52708150/158029273-c7e8f05f-c5ef-4e94-8eac-dba9a488b81b.mp4
 
 ### Heap Sort - Few Unique
