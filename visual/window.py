@@ -43,8 +43,8 @@ class Window:
         self.clock.tick(Window.FPS)
 
     def _draw_rods(self, important_rods: list[int] = []) -> None:
-        rod_width = (Window.WIDTH - 100 - len(self.array)) / len(self.array)
-        rod_height = (Window.HEIGHT - 100) / max(self.array) - 1
+        rod_width = (Window.WIDTH - len(self.array)) / len(self.array)
+        rod_height = Window.HEIGHT / max(self.array)
 
         x_coord = Window.WIDTH / 2 - (len(self.array) * (rod_width + 1)) / 2
         for k in self.array:
@@ -75,8 +75,8 @@ class Window:
     def _draw_some_rods(
         self, array: list[int], important_rods: list[int] = [], do_others: bool = False
     ) -> None:
-        rod_width = (Window.WIDTH - 100 - len(self.array)) / len(self.array)
-        rod_height = (Window.HEIGHT - 100) / max(self.array) - 1
+        rod_width = (Window.WIDTH - len(self.array)) / len(self.array)
+        rod_height = Window.HEIGHT / max(self.array)
         
         last_element = array[-1]
 

@@ -65,7 +65,7 @@ After that you can proceed to start the program by running `main.py`.
 ## TO-DO List
 
 <ul>
-    <li>Improve the height/width guess of the rods so I will be able to increase the max size of the array to sort.</li>
+    <li>Nothing yet.</li>
 </ul>
 
 ## Authors
