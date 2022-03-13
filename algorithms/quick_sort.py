@@ -16,7 +16,7 @@ def sort(array: list[int]):
                 if array[i] <= pivot:
                     array[i], array[pivot_index] = array[pivot_index], array[i]
                     pivot_index += 1
-                yield array, [array[i], array[pivot_index - 1]]
+                    yield array, [array[i], array[pivot_index - 1]]
 
             array[pivot_index], array[right] = array[right], array[pivot_index]
             yield array, [array[pivot_index], array[right]]

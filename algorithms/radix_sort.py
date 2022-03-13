@@ -15,9 +15,13 @@ def sort(array: list[int]):
         for i in array:
             tmp = i // placement
             buckets[tmp % RADIX].append(i)
+            passed = False
             if maxLength and tmp > 0:
+                passed = True
                 maxLength = False
-            yield array, [i]
+                yield array, [i]
+            if not passed:
+                yield array, [i]
         
         # empty lists into input array
         a = 0

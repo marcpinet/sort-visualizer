@@ -6,5 +6,5 @@ def sort(array: list[int]):
             if array[j] > array[j + 1]:
                 array[j], array[j + 1] = array[j + 1], array[j]
                 
-            yield array, [array[j], array[j + 1]]
+                yield array, [array[j], array[j + 1]]
     

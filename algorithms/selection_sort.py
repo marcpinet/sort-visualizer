@@ -7,6 +7,6 @@ def sort(array: list[int]):
             if array[min_idx] > array[j]:
                 min_idx = j
         
-            yield array, [array[i], array[j]]
+                yield array, [array[i], array[j]]
             
         array[i], array[min_idx] = array[min_idx], array[i]
