@@ -21,17 +21,17 @@ When the Pygame window gets opened, press <kbd>SPACE</kbd> to start the algorith
 
 ## Demo
 
-### Quick Sort - Randomized
+### Quick Sort - Randomized Array
 
-https://user-images.githubusercontent.com/52708150/158029271-9ed3b190-e5f0-4536-9ea8-b9b9b9609776.mp4
+https://user-images.githubusercontent.com/52708150/158039436-4f7f3847-20ff-4f5f-8981-53d9babdfc36.mp4
 
-### Merge Sort - Reversed - Playing with the speed (as you can see on top left corner)
+### Merge Sort - Randomized Array
 
-https://user-images.githubusercontent.com/52708150/158029273-c7e8f05f-c5ef-4e94-8eac-dba9a488b81b.mp4
+https://user-images.githubusercontent.com/52708150/158039423-6e953005-65d8-437c-9da1-f279f738a600.mp4
 
-### Heap Sort - Few Unique
+### Heap Sort - Randomized Array
 
-https://user-images.githubusercontent.com/52708150/158029275-492181d1-1b5e-4269-8217-64c4bae0d785.mp4
+https://user-images.githubusercontent.com/52708150/158039415-4e5dfd88-dc88-4c53-9f15-f79d7954352d.mp4
 
 ## Support 👨‍💻
 
