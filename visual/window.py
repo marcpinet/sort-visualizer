@@ -231,8 +231,11 @@ class Window:
                         elif self.sorted:
                             shuffle(self.array)
                             self.sorted = False
-                except:
-                    pass
+                except Exception as e:
+                    print(e)
+                    pygame.quit()
+                    self.running = False
+                    break
 
                 # Refreshing EVERYTHING
                 self._draw_rods()
