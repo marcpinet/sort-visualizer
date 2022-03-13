@@ -1,9 +1,5 @@
-import time
-
-
 def sort(array: list[int]):
     """Binary Search Tree Sort"""
-    start_time = time.time()
     final_return = []
     steps = []
 
@@ -19,14 +15,14 @@ def sort(array: list[int]):
                 if self.left is None:
                     self.left = node
                     node.parent = self
-                    yield array, [node.key], time.time() - start_time
+                    yield array, [node.key]
                 else:
                     yield from self.left.insert_elem(node)
             elif self.key <= node.key:
                 if self.right is None:
                     self.right = node
                     node.parent = self
-                    yield array, [node.key], time.time() - start_time
+                    yield array, [node.key]
                 else:
                     yield from self.right.insert_elem(node)
 
@@ -50,7 +46,7 @@ def sort(array: list[int]):
 
         def add_val(self, key):
             new_node = BinSearchTreeNode(key)
-            yield array, [key], time.time() - start_time
+            yield array, [key]
             
             if self.root is None:
                 self.root = new_node
@@ -65,8 +61,8 @@ def sort(array: list[int]):
     
     i = 0
     for step in steps:
-        yield array, [i], time.time() - start_time
+        yield array, [i]
         array = step
         i += 1
 
-    yield final_return, [], time.time() - start_time
+    yield final_return, []
