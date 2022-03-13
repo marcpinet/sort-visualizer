@@ -137,7 +137,7 @@ def main():
         + vc.CMDColors.FAIL
         + "ESCAPE"
         + vc.CMDColors.CYAN
-        + " in the terminal to exit."
+        + " to exit."
         + vc.CMDColors.RESET
     )
 
