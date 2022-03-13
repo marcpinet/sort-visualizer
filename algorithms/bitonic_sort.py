@@ -1,24 +1,27 @@
-def sort(array: list[int]):
-    """Bitonic Sort"""
+def sort(array: list[int], low: int = 0, length: int = 0, direction: int = 1):
+    if length == 0:
+        length = len(array)
+    
+    def _comp_and_swap(array: list[int], index1: int, index2: int, direction: int):
+        if (direction == 1 and array[index1] > array[index2]) or (
+            direction == 0 and array[index1] < array[index2]
+        ):
+            array[index1], array[index2] = array[index2], array[index1]
+            yield array, [array[index1], array[index2]]
 
-    def _comp_and_swap(a, i, j, dire):
-        if (dire == 1 and a[i] > a[j]) or (dire == 0 and a[i] < a[j]):
-            a[i], a[j] = a[j], a[i]
 
-    def _bitonic_merge(a, low, cnt, dire):
-        if cnt > 1:
-            k = cnt // 2
-            for i in range(low, low + k):
-                _comp_and_swap(a, i, i + k, dire)
-            _bitonic_merge(a, low, k, dire)
-            _bitonic_merge(a, low + k, k, dire)
-
-    def _bitonic_sort(a, low, cnt, dire):
-        if cnt > 1:
-            k = cnt // 2
-            _bitonic_sort(a, low, k, 1)
-            _bitonic_sort(a, low + k, k, 0)
-            _bitonic_merge(a, low, cnt, dire)
-
-    _bitonic_sort(array, 0, len(array), 1)
-    yield array, [-1]
+    def _bitonic_merge(array: list[int], low: int, length: int, direction: int):
+        if length > 1:
+            middle = int(length / 2)
+            for i in range(low, low + middle):
+                yield from _comp_and_swap(array, i, i + middle, direction)
+            yield from _bitonic_merge(array, low, middle, direction)
+            yield from _bitonic_merge(array, low + middle, middle, direction)
+    
+    if length > 1:
+        middle = int(length / 2)
+        yield from sort(array, low, middle, 1)
+        yield from sort(array, low + middle, middle, 0)
+        yield from _bitonic_merge(array, low, length, direction)
+    
+    yield array, []

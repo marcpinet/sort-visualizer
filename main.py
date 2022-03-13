@@ -57,6 +57,8 @@ def generate_array(
 
 
 def main():
+    
+    print()
 
     # Initializing variables
     choice = None
@@ -68,7 +70,10 @@ def main():
 
     # Printing available choices
     for i in range(len(algorithms)):
-        print(vc.CMDColors.YELLOW, i, ":", algorithms[i])
+        if algorithms[i] == "Bitonic Sort":
+            print(vc.CMDColors.YELLOW, i, ":", algorithms[i], "(only if size of array is a power of 2)")
+        else:
+            print(vc.CMDColors.YELLOW, i, ":", algorithms[i])
 
     print()
 
