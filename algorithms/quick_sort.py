@@ -26,4 +26,4 @@ def sort(array: list[int]):
 
     yield from _quick_sort(array)
 
-    yield array, [-1]
+    yield array, []

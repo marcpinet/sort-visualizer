@@ -25,4 +25,4 @@ def sort(array, digit=-1):
         array[i] = output_array[i]
         yield array, [i]
 
-    yield array, [-1]
+    yield array, []

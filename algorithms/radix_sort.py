@@ -35,4 +35,4 @@ def sort(array: list[int]):
         # move to next digit
         placement *= RADIX
         
-        yield array, [-1]
+        yield array, []

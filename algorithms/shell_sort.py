@@ -16,4 +16,4 @@ def sort(array: list[int]):
             if not passed:
                 yield array, [array[i], array[j]]
         interval //= 2
-        yield array, [-1]
+        yield array, []

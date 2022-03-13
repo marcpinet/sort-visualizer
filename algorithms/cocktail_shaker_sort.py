@@ -20,4 +20,4 @@ def sort(array: list[int]):
                 swapped = True
                 yield array, [array[i], array[i - 1]]
             
-    yield array, [-1]
+    yield array, []

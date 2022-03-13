@@ -69,4 +69,4 @@ def sort(array: list[int]):
         array = step
         i += 1
 
-    yield final_return, [-1], time.time() - start_time
+    yield final_return, [], time.time() - start_time

@@ -26,4 +26,4 @@ def sort(array: list[int]):
         
     out = out[::-1]
 
-    yield out, [-1]
+    yield out, []
