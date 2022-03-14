@@ -174,7 +174,6 @@ class Window:
             if keyboard.is_pressed("esc"):
                 self.running = False
                 pygame.quit()
-                quit()
         except:
             pass
 
