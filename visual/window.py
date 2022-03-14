@@ -25,6 +25,7 @@ class Window:
         self.elapsed_time = 0
 
         self.array = array
+        self.original_array = array.copy()
         self.algorithm = algorithm
         self.sorted = False
 
@@ -228,7 +229,7 @@ class Window:
 
                         # Resetting the array
                         elif self.sorted:
-                            shuffle(self.array)
+                            self.array = self.original_array.copy()
                             self.sorted = False
                 except Exception as e:
                     print(e)
