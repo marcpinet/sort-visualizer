@@ -167,6 +167,7 @@ def main():
 
         animation = vw.Window(array, algorithms[choice])
         animation.start()
+        del animation
 
     _ = input("\nPress ENTER to exit.\n")
 

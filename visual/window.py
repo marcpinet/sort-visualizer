@@ -11,11 +11,11 @@ import math
 class Window:
     WIDTH = 0
     HEIGHT = 0
-    FPS = 1
+    FPS = 0
 
     def __init__(self, array: list[int], algorithm: str):
 
-        Window.FPS *= round(math.log2(len(array))) ** 2
+        Window.FPS = round(math.log2(len(array))) ** 2
         self.default_fps = Window.FPS
 
         self.clock = pygame.time.Clock()
