@@ -41,7 +41,6 @@ class Window:
 
     def _refresh_all(self) -> None:
         pygame.event.pump()  # I still don't know why, but removing this line of code makes the program crash at the middle of the animation (lol)
-        pygame.display.update()
         pygame.display.flip()
         self._refresh_background()
         self.show_speed()
